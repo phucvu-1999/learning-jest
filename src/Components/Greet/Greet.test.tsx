@@ -7,7 +7,7 @@ it("should render hello to the screen", () => {
   expect(textElement).toBeInTheDocument();
 });
 
-it("should render name Tien Phuc", () => {
+it.only("should render name is Tien Phuc", () => {
   render(<Greet name="Tien Phuc" />);
   const textElement = screen.getByText(/Tien Phuc/i);
   expect(textElement).toBeInTheDocument();
