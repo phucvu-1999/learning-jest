@@ -1,26 +1,26 @@
+import { lazy, Suspense } from "react";
+import { Outlet, Route, Routes } from "react-router-dom";
 import "./App.css";
-import logo from "./logo.svg";
+import Menu from "./Components/Menu/Menu";
+
+const Greet = lazy(() => import("./Components/Greet/Greet"));
 
 function App() {
-  console.log("Hello");
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Menu />
+      <Routes>
+        <Route
+          path="/greet"
+          element={
+            <Suspense fallback={<p>Loading ...</p>}>
+              <Greet />
+            </Suspense>
+          }
+        />
+        <Route path="/" element={<Outlet />} />
+      </Routes>
+    </>
   );
 }
 
